@@ -80,9 +80,10 @@ require('lspconfig').rust_analyzer.setup({
 	}
 })
 require('lspconfig').pylsp.setup({})
-require('lspconfig').tsserver.setup({})
+require('lspconfig').ts_ls.setup({})
 require('lspconfig').eslint.setup({})
 require('lspconfig').superhtml.setup({})
+require('lspconfig').clangd.setup({})
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
