@@ -1,21 +1,21 @@
 return {
     {
         "folke/tokyonight.nvim",
-        lazy=false,
-        priority=1000,
-        config=function()
-            vim.cmd[[colorscheme tokyonight-moon]]
+        lazy = false,
+        priority = 1000,
+        config = function()
+            vim.cmd [[colorscheme tokyonight-moon]]
         end,
     },
     {
         "xiyaowong/transparent.nvim",
-        lazy=false,
+        lazy = false,
     },
     { 'nvim-telescope/telescope-project.nvim' },
     {
         'nvim-telescope/telescope.nvim',
         tag = '0.1.8',
-        config=function()
+        config = function()
             require('telescope').load_extension('project')
         end,
         dependencies = { 'nvim-lua/plenary.nvim' }
@@ -64,26 +64,27 @@ return {
     },
     { "mbbill/undotree" },
     { "tpope/vim-fugitive" },
+    { "sindrets/diffview.nvim" },
     -- { "sunjon/shade.nvim" },
     -- lsp-zero
-    { 'VonHeikemen/lsp-zero.nvim', branch = 'v4.x' },
+    { 'VonHeikemen/lsp-zero.nvim',            branch = 'v4.x' },
     { 'neovim/nvim-lspconfig' },
     { 'hrsh7th/cmp-nvim-lsp' },
     { 'hrsh7th/nvim-cmp' },
 
-    {'hrsh7th/cmp-nvim-lsp'},
-    {'hrsh7th/cmp-buffer'},
-    {'hrsh7th/cmp-path'},
-    {'hrsh7th/cmp-cmdline'},
-    {'hrsh7th/nvim-cmp'},
-    {'hrsh7th/vscode-langservers-extracted'},
+    { 'hrsh7th/cmp-nvim-lsp' },
+    { 'hrsh7th/cmp-buffer' },
+    { 'hrsh7th/cmp-path' },
+    { 'hrsh7th/cmp-cmdline' },
+    { 'hrsh7th/nvim-cmp' },
+    { 'hrsh7th/vscode-langservers-extracted' },
 
-    {'L3MON4D3/LuaSnip'},
-    {'saadparwaiz1/cmp_luasnip'},
+    { 'L3MON4D3/LuaSnip' },
+    { 'saadparwaiz1/cmp_luasnip' },
     -- lsp-zero end
 
     { 'github/copilot.vim' },
-    { "alexghergh/nvim-tmux-navigation"},
+    { "alexghergh/nvim-tmux-navigation" },
     { "lewis6991/gitsigns.nvim" },
     {
         "nvim-neo-tree/neo-tree.nvim",
@@ -95,14 +96,15 @@ return {
             -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
         }
     },
-    { "vim-test/vim-test",
+    {
+        "vim-test/vim-test",
         dependencies = {
             "preservim/vimux",
         },
     },
     {
         "epwalsh/obsidian.nvim",
-        version = "*",  -- recommended, use latest release instead of latest commit
+        version = "*", -- recommended, use latest release instead of latest commit
         lazy = true,
         ft = "markdown",
         -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
