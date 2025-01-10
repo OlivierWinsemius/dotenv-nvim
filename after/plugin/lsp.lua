@@ -28,7 +28,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 local cmp = require('cmp')
-
 cmp.setup({
     sources = {
         { name = 'nvim_lsp' },
@@ -39,7 +38,10 @@ cmp.setup({
             vim.snippet.expand(args.body)
         end,
     },
-    mapping = cmp.mapping.preset.insert({}),
+    mapping = cmp.mapping.preset.insert({
+        ['<C-Space>'] = cmp.mapping.complete(),
+        ['<CR>'] = cmp.mapping.confirm({ select = true }),
+    }),
 })
 
 vim.diagnostic.config({ { update_in_insert = true } })
@@ -101,35 +103,11 @@ require('lspconfig').lua_ls.setup({
             }
         })
     end,
-    on_attach = on_attach,
-    settings = {
-        Lua = {}
-    }
+    settings = { Lua = {} }
 })
 
 
-require('lspconfig').rust_analyzer.setup({
-    on_attach = on_attach,
-    settings = {
-        ["rust-analyzer"] = {
-            imports = {
-                granularity = {
-                    group = "module",
-                },
-                prefix = "self",
-            },
-            cargo = {
-                buildScripts = {
-                    enable = true,
-                },
-            },
-            procMacro = {
-                enable = true
-            },
-        }
-    }
-})
-
+require('lspconfig').rust_analyzer.setup({})
 require('lspconfig').pylsp.setup({})
 require('lspconfig').ts_ls.setup({})
 require('lspconfig').eslint.setup({})
@@ -137,20 +115,4 @@ require('lspconfig').superhtml.setup({})
 require('lspconfig').clangd.setup({})
 require('lspconfig').ols.setup({})
 require('lspconfig').glsl_analyzer.setup({})
-
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-require('lspconfig').cssls.setup({
-    capabilities = capabilities,
-})
-
-local cmp = require('cmp')
-cmp.setup({
-    sources = {
-        { name = 'nvim_lsp' },
-    },
-    mapping = cmp.mapping.preset.insert({
-        ['<C-Space>'] = cmp.mapping.complete(),
-        ['<CR>'] = cmp.mapping.confirm({ select = true }),
-    }),
-})
+require('lspconfig').cssls.setup({})
