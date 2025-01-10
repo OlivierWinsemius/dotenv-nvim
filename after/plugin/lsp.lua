@@ -106,13 +106,21 @@ require('lspconfig').lua_ls.setup({
     settings = { Lua = {} }
 })
 
-
+-- brew install rust-analyzer
 require('lspconfig').rust_analyzer.setup({})
+-- brew install python-lsp-server
 require('lspconfig').pylsp.setup({})
+-- npm install -g typescript typescript-language-server
 require('lspconfig').ts_ls.setup({})
+-- npm install eslint
 require('lspconfig').eslint.setup({})
+-- ~/Developer/superhtml (from https://github.com/kristoff-it/superhtml/releases)
 require('lspconfig').superhtml.setup({})
+-- brew install llvm
 require('lspconfig').clangd.setup({})
+-- cd ~/Developer/personal/odin/ols && ./build.sh
 require('lspconfig').ols.setup({})
+-- /usr/local/bin/glsl_analyzer (from https://github.com/nolanderc/glsl_analyzer/releases)
 require('lspconfig').glsl_analyzer.setup({})
+-- npm install -g vscode-css-languageserver-bin
 require('lspconfig').cssls.setup({})
