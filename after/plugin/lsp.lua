@@ -124,3 +124,5 @@ require('lspconfig').ols.setup({})
 require('lspconfig').glsl_analyzer.setup({})
 -- npm install -g vscode-css-languageserver-bin
 require('lspconfig').cssls.setup({})
+-- brew install cmake-language-server
+require('lspconfig').cmake.setup({})
