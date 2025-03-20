@@ -11,10 +11,7 @@ vim.opt.hlsearch = false
 vim.opt.incsearch = true
 vim.opt.smartindent = true
 vim.opt.wrap = true
-
-vim.g.rustfmt_autosave = 1
 vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0
-vim.g.netrw_winsize = 25
 vim.g.transparent_enabled = 1
 vim.o.cursorline = true

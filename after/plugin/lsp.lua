@@ -112,7 +112,7 @@ require('lspconfig').rust_analyzer.setup({})
 require('lspconfig').pylsp.setup({})
 -- npm install -g typescript typescript-language-server
 require('lspconfig').ts_ls.setup({})
--- npm install eslint
+-- npm install -g eslint
 require('lspconfig').eslint.setup({})
 -- ~/Developer/superhtml (from https://github.com/kristoff-it/superhtml/releases)
 require('lspconfig').superhtml.setup({})
