@@ -69,7 +69,7 @@ return {
     { 'hrsh7th/nvim-cmp' },
     { 'hrsh7th/cmp-nvim-lsp' },
 
-    { 'github/copilot.vim' },
+    -- { 'github/copilot.vim' },
     { "alexghergh/nvim-tmux-navigation" },
     { "lewis6991/gitsigns.nvim" },
     {
