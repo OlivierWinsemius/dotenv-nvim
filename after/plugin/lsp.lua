@@ -1,3 +1,7 @@
+-- Reserve a space in the gutter
+-- This will avoid an annoying layout shift in the screen
+vim.opt.signcolumn = 'yes'
+
 -- Add cmp_nvim_lsp capabilities settings to lspconfig
 -- This should be executed before you configure any language server
 local lspconfig_defaults = require('lspconfig').util.default_config
@@ -27,23 +31,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end,
 })
 
-local cmp = require('cmp')
-cmp.setup({
-    sources = {
-        { name = 'nvim_lsp' },
-    },
-    snippet = {
-        expand = function(args)
-            -- You need Neovim v0.10 to use vim.snippet
-            vim.snippet.expand(args.body)
-        end,
-    },
-    mapping = cmp.mapping.preset.insert({
-        ['<C-Space>'] = cmp.mapping.complete(),
-        ['<CR>'] = cmp.mapping.confirm({ select = true }),
-    }),
-})
-
 vim.diagnostic.config({ { update_in_insert = true } })
 
 local buffer_autoformat = function(bufnr)
@@ -56,7 +43,6 @@ local buffer_autoformat = function(bufnr)
         group = group,
         desc = 'LSP format on save',
         callback = function()
-            -- note: do not enable async formatting
             vim.lsp.buf.format({ async = false, timeout_ms = 10000 })
         end,
     })
@@ -70,42 +56,13 @@ vim.api.nvim_create_autocmd('LspAttach', {
             return
         end
 
-        -- make sure there is at least one client with formatting capabilities
         if client.supports_method('textDocument/formatting') then
             buffer_autoformat(event.buf)
         end
     end
 })
 
-require('lspconfig').lua_ls.setup({
-    on_init = function(client)
-        local path = client.workspace_folders[1].name
-        if vim.loop.fs_stat(path .. '/.luarc.json') or vim.loop.fs_stat(path .. '/.luarc.jsonc') then
-            return
-        end
-
-        client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
-            runtime = {
-                -- Tell the language server which version of Lua you're using
-                -- (most likely LuaJIT in the case of Neovim)
-                version = 'LuaJIT'
-            },
-            -- Make the server aware of Neoveim runtime files
-            workspace = {
-                checkThirdParty = false,
-                library = {
-                    vim.env.VIMRUNTIME,
-                    -- Depending on the usage, you might want to add additional paths here.
-                    "${4rd}/luv/library"
-                }
-                -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
-                -- library = vim.api.nvim_get_runtime_file("", true)
-            }
-        })
-    end,
-    settings = { Lua = {} }
-})
-
+require('lspconfig').lua_ls.setup({})
 -- brew install rust-analyzer
 require('lspconfig').rust_analyzer.setup({})
 -- brew install python-lsp-server
@@ -126,3 +83,18 @@ require('lspconfig').glsl_analyzer.setup({})
 require('lspconfig').cssls.setup({})
 -- brew install cmake-language-server
 require('lspconfig').cmake.setup({})
+
+local cmp = require('cmp')
+
+cmp.setup({
+    sources = {
+        { name = 'nvim_lsp' },
+    },
+    snippet = {
+        expand = function(args)
+            -- You need Neovim v0.10 to use vim.snippet
+            vim.snippet.expand(args.body)
+        end,
+    },
+    mapping = cmp.mapping.preset.insert({}),
+})

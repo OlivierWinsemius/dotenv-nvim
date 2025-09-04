@@ -49,6 +49,7 @@ end
 
 require("oil").setup({
     view_options = {
+        show_hidden = true,
         is_hidden_file = function(name, bufnr)
             local dir = require("oil").get_current_dir(bufnr)
             local is_dotfile = vim.startswith(name, ".") and name ~= ".."
