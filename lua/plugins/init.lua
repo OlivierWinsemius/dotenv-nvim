@@ -7,11 +7,12 @@ return {
     },
     {
         "folke/trouble.nvim",
+        opts = {}, -- for default options, refer to the configuration section for custom setup.
         cmd = "Trouble",
         keys = {
             {
                 "<leader>xx",
-                "<cmd>Trouble diagnostics toggle focus=true<cr>",
+                "<cmd>Trouble diagnostics toggle<cr>",
                 desc = "Diagnostics (Trouble)",
             },
             {
@@ -50,7 +51,13 @@ return {
         config = function() require('telescope').load_extension('project') end,
         dependencies = { 'nvim-lua/plenary.nvim' }
     },
-    { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+    {
+        "nvim-treesitter/nvim-treesitter",
+        build = ":TSUpdate",
+        dependencies = { "OXY2DEV/markview.nvim" },
+        lazy = false
+
+    },
     { "mbbill/undotree" },
     { "tpope/vim-fugitive" },
     { "sindrets/diffview.nvim" },
@@ -58,6 +65,6 @@ return {
     { 'github/copilot.vim' },
     { "alexghergh/nvim-tmux-navigation" },
     { "lewis6991/gitsigns.nvim" },
-    { 'stevearc/oil.nvim',               dependencies = { "echasnovski/mini.icons" } },
-    { 'kevinhwang91/nvim-ufo',           dependencies = { 'kevinhwang91/promise-async' } },
+    { 'stevearc/oil.nvim',              dependencies = { "echasnovski/mini.icons" } },
+    { 'kevinhwang91/nvim-ufo',          dependencies = { 'kevinhwang91/promise-async' } },
 }
