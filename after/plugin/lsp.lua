@@ -62,27 +62,41 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
 })
 
-require('lspconfig').lua_ls.setup({})
+vim.lsp.config("lua_ls", {})
 -- brew install rust-analyzer
-require('lspconfig').rust_analyzer.setup({})
+vim.lsp.config("rust_analyzer", {})
 -- brew install python-lsp-server
-require('lspconfig').pylsp.setup({})
+vim.lsp.config("pylsp", {})
 -- npm install -g typescript typescript-language-server
-require('lspconfig').ts_ls.setup({})
+vim.lsp.config("ts_ls", {})
 -- npm install -g eslint
-require('lspconfig').eslint.setup({})
+vim.lsp.config("eslint", {})
 -- ~/Developer/superhtml (from https://github.com/kristoff-it/superhtml/releases)
-require('lspconfig').superhtml.setup({})
+vim.lsp.config("superhtml", {})
 -- brew install llvm
-require('lspconfig').clangd.setup({})
+vim.lsp.config("clangd", {})
 -- cd ~/Developer/personal/odin/ols && ./build.sh
-require('lspconfig').ols.setup({})
+vim.lsp.config("ols", {})
 -- /usr/local/bin/glsl_analyzer (from https://github.com/nolanderc/glsl_analyzer/releases)
-require('lspconfig').glsl_analyzer.setup({})
+vim.lsp.config("glsl_analyzer", {})
 -- npm install -g vscode-css-languageserver-bin
-require('lspconfig').cssls.setup({})
+vim.lsp.config("cssls", {})
 -- brew install cmake-language-server
-require('lspconfig').cmake.setup({})
+vim.lsp.config("cmake", {})
+
+vim.lsp.enable({
+    "lua_ls",
+    "rust_analyzer",
+    "pylsp",
+    "ts_ls",
+    "eslint",
+    "superhtml",
+    "clangd",
+    "ols",
+    "glsl_analyzer",
+    "cssls",
+    "cmake"
+})
 
 local cmp = require('cmp')
 
