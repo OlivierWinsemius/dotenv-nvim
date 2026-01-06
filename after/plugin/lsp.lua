@@ -60,9 +60,9 @@ vim.lsp.config("rust_analyzer", {})
 -- brew install python-lsp-server
 vim.lsp.config("pylsp", {})
 -- npm install -g typescript typescript-language-server
-vim.lsp.config("ts_ls", {})
+-- vim.lsp.config("ts_ls", {})
 -- npm install -g eslint
-vim.lsp.config("eslint", {})
+-- vim.lsp.config("eslint", {})
 -- ~/Developer/superhtml (from https://github.com/kristoff-it/superhtml/releases)
 vim.lsp.config("superhtml", {})
 -- brew install llvm
@@ -80,8 +80,8 @@ vim.lsp.enable({
     "lua_ls",
     "rust_analyzer",
     "pylsp",
-    "ts_ls",
-    "eslint",
+    --    "ts_ls",
+    --    "eslint",
     "superhtml",
     "clangd",
     "ols",

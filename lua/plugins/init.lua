@@ -91,6 +91,7 @@ return {
 
     -- lsp (language server protocol) configuration
     { 'neovim/nvim-lspconfig' },
+    { 'nvimtools/none-ls.nvim' },
 
     -- file explorer
     { 'stevearc/oil.nvim',              dependencies = { "echasnovski/mini.icons" } },
