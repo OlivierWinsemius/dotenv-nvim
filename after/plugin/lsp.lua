@@ -27,31 +27,29 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end,
 })
 
-local buffer_autoformat = function(bufnr)
-    local group = 'lsp_autoformat'
-    vim.api.nvim_create_augroup(group, { clear = false })
-    vim.api.nvim_clear_autocmds({ group = group, buffer = bufnr })
-
-    vim.api.nvim_create_autocmd('BufWritePre', {
-        buffer = bufnr,
-        group = group,
-        desc = 'LSP format on save',
-        callback = function()
-            vim.lsp.buf.format({ async = false, timeout_ms = 10000 })
-        end,
-    })
-end
-
+-- Autoformat on save if the language server supports it
 vim.api.nvim_create_autocmd('LspAttach', {
     callback = function(event)
-        local id = vim.tbl_get(event, 'data', 'client_id')
-        local client = id and vim.lsp.get_client_by_id(id)
-        if client == nil then
-            return
-        end
-        if client.supports_method('textDocument/formatting') then
-            buffer_autoformat(event.buf)
-        end
+        local client = vim.lsp.get_client_by_id(event.data.client_id)
+        if client == nil or client.supports_method('textDocument/formatting') == false then return end
+
+        local group = 'lsp_autoformat'
+        vim.api.nvim_create_augroup(group, { clear = false })
+        vim.api.nvim_clear_autocmds({ group = group, buffer = event.buf })
+
+        vim.api.nvim_create_autocmd('BufWritePre', {
+            buffer = event.buf,
+            group = group,
+            desc = 'LSP format on save',
+            callback = function()
+                vim.lsp.buf.format({
+                    buffer = event.buf,
+                    id = client.id,
+                    async = false,
+                    timeout_ms = 10000
+                })
+            end,
+        })
     end
 })
 
