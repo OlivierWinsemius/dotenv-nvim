@@ -94,6 +94,7 @@ return {
 
 	-- lsp (language server protocol) configuration
 	{ "neovim/nvim-lspconfig" },
+	-- null-ls for formatting and linting
 	{ "nvimtools/none-ls.nvim" },
 
 	-- file explorer

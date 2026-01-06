@@ -3,12 +3,11 @@ local null_ls = require("null-ls")
 null_ls.setup({
 	debug = true,
 	sources = {
-		-- npm install -g @fsouza/prettierd
 		null_ls.builtins.formatting.prettierd,
-		-- brew install stylua
 		null_ls.builtins.formatting.stylua,
-		-- pip install black
 		null_ls.builtins.formatting.black,
+
+		null_ls.builtins.diagnostics.pylint,
 	},
 })
 
@@ -16,7 +15,7 @@ null_ls.setup({
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(event)
 		local client = vim.lsp.get_client_by_id(event.data.client_id)
-		if client == nil or client.supports_method("textDocument/formatting") == false then
+		if client == nil or client.supports_method(client, "textDocument/formatting", 0) == false then
 			return
 		end
 
