@@ -1,25 +1,25 @@
-vim.o.foldcolumn = '1' -- '0' is not bad
-vim.o.foldlevel = 99   -- Using ufo provider need a large value, feel free to decrease the value
+vim.o.foldcolumn = "1" -- '0' is not bad
+vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
 vim.o.foldlevelstart = 99
 vim.o.foldenable = true
 
-local ufo = require('ufo')
-vim.keymap.set('n', '<leader>K', ufo.openAllFolds)
-vim.keymap.set('n', '<leader>J', ufo.closeAllFolds)
-vim.keymap.set('n', '<leader>k', ufo.openFoldsExceptKinds)
-vim.keymap.set('n', '<leader>j', ufo.closeFoldsWith)
-vim.keymap.set('n', '<leader>h', 'zc')
-vim.keymap.set('n', '<leader>l', 'zo')
+local ufo = require("ufo")
+vim.keymap.set("n", "<leader>K", ufo.openAllFolds)
+vim.keymap.set("n", "<leader>J", ufo.closeAllFolds)
+vim.keymap.set("n", "<leader>k", ufo.openFoldsExceptKinds)
+vim.keymap.set("n", "<leader>j", ufo.closeFoldsWith)
+vim.keymap.set("n", "<leader>h", "zc")
+vim.keymap.set("n", "<leader>l", "zo")
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.foldingRange = {
-    dynamicRegistration = false,
-    lineFoldingOnly = true
+	dynamicRegistration = false,
+	lineFoldingOnly = true,
 }
 
 local language_servers = vim.lsp.get_clients() -- or list servers manually like {'gopls', 'clangd'}
 for _, ls in ipairs(language_servers) do
-    require('lspconfig')[ls].setup({ capabilities = capabilities })
+	require("lspconfig")[ls].setup({ capabilities = capabilities })
 end
 
 ufo.setup()
