@@ -53,6 +53,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
 })
 
+-- brew install lua-language-server
 vim.lsp.config("lua_ls", {})
 -- brew install rust-analyzer
 vim.lsp.config("rust_analyzer", {})
