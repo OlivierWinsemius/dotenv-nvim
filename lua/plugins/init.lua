@@ -1,14 +1,29 @@
 return {
+    -- colorscheme
     {
         "folke/tokyonight.nvim",
         lazy = false,
         priority = 1000,
         config = function() vim.cmd [[colorscheme tokyonight-moon]] end,
     },
+
+    -- lazydev.nvim: Enhanced Lua development experience
+    {
+        "folke/lazydev.nvim",
+        ft = "lua", -- only load on lua files
+        opts = {
+            library = {
+                -- See the configuration section for more details
+                -- Load luvit types when the `vim.uv` word is found
+                { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+            },
+        },
+    },
+
+    -- diagnostics list and more
     {
         "folke/trouble.nvim",
-        opts = {}, -- for default options, refer to the configuration section for custom setup.
-        cmd = "Trouble",
+        opts = {},
         keys = {
             {
                 "<leader>xx",
@@ -40,17 +55,27 @@ return {
                 "<cmd>Trouble qflist toggle<cr>",
                 desc = "Quickfix List (Trouble)",
             },
+            {
+                "<leader>xq",
+                "<cmd>TroubleToggle quickfix<cr>",
+                desc = "Toggle Quickfix List (Trouble)",
+            },
         },
     },
-    { "xiyaowong/transparent.nvim",           lazy = false },
+
+    -- completion engine
     { "hrsh7th/nvim-cmp" },
     { "hrsh7th/cmp-nvim-lsp" },
+
+    -- telescope.nvim: Highly extendable fuzzy finder over lists
     { 'nvim-telescope/telescope-project.nvim' },
     {
         'nvim-telescope/telescope.nvim',
         config = function() require('telescope').load_extension('project') end,
         dependencies = { 'nvim-lua/plenary.nvim' }
     },
+
+    -- treesitter (syntax highlighting and code understanding)
     {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
@@ -58,13 +83,22 @@ return {
         lazy = false
 
     },
-    { "mbbill/undotree" },
+
+    -- git integration
     { "tpope/vim-fugitive" },
     { "sindrets/diffview.nvim" },
-    { 'neovim/nvim-lspconfig' },
-    { 'github/copilot.vim' },
-    { "alexghergh/nvim-tmux-navigation" },
     { "lewis6991/gitsigns.nvim" },
+
+    -- lsp (language server protocol) configuration
+    { 'neovim/nvim-lspconfig' },
+
+    -- file explorer
     { 'stevearc/oil.nvim',              dependencies = { "echasnovski/mini.icons" } },
+
+    -- other plugins
+    { "mbbill/undotree" },
+    { 'github/copilot.vim' },
+    { "xiyaowong/transparent.nvim",     lazy = false },
+    { "alexghergh/nvim-tmux-navigation" },
     { 'kevinhwang91/nvim-ufo',          dependencies = { 'kevinhwang91/promise-async' } },
 }

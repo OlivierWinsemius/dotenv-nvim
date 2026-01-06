@@ -1,3 +1,4 @@
+vim.opt.signcolumn = "yes"
 vim.opt.termguicolors = true
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true

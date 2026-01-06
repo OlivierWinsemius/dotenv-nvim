@@ -1,6 +1,7 @@
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
+-- Clone lazy.nvim if it is not already installed
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
     local lazyrepo = "https://github.com/folke/lazy.nvim.git"
     local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
@@ -15,7 +16,11 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
     end
 end
 
+-- Prepend lazy.nvim to runtime path
 vim.opt.rtp:prepend(lazypath)
+
+-- Enable showing diagnostics in insert mode
+vim.diagnostic.config({ { update_in_insert = true } })
 
 -- Make sure to setup `mapleader` and `maplocalleader` before
 -- loading lazy.nvim so that mappings are correct.

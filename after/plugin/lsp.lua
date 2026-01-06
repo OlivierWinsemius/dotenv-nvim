@@ -1,7 +1,3 @@
--- Reserve a space in the gutter
--- This will avoid an annoying layout shift in the screen
-vim.opt.signcolumn = 'yes'
-
 -- Add cmp_nvim_lsp capabilities settings to lspconfig
 -- This should be executed before you configure any language server
 local lspconfig_defaults = require('lspconfig').util.default_config
@@ -31,8 +27,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end,
 })
 
-vim.diagnostic.config({ { update_in_insert = true } })
-
 local buffer_autoformat = function(bufnr)
     local group = 'lsp_autoformat'
     vim.api.nvim_create_augroup(group, { clear = false })
@@ -55,7 +49,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
         if client == nil then
             return
         end
-
         if client.supports_method('textDocument/formatting') then
             buffer_autoformat(event.buf)
         end
@@ -96,22 +89,4 @@ vim.lsp.enable({
     "glsl_analyzer",
     "cssls",
     "cmake"
-})
-
-local cmp = require('cmp')
-
-cmp.setup({
-    sources = {
-        { name = 'nvim_lsp' },
-    },
-    snippet = {
-        expand = function(args)
-            -- You need Neovim v0.10 to use vim.snippet
-            vim.snippet.expand(args.body)
-        end,
-    },
-    mapping = cmp.mapping.preset.insert({
-        ['<C-Space>'] = cmp.mapping.complete(),
-        ['<CR>'] = cmp.mapping.confirm({ select = true }),
-    }),
 })
