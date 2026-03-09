@@ -102,7 +102,7 @@ return {
 
 	-- other plugins
 	{ "mbbill/undotree" },
-	{ "github/copilot.vim" },
+	-- { "github/copilot.vim" },
 	{ "xiyaowong/transparent.nvim", lazy = false },
 	{ "alexghergh/nvim-tmux-navigation" },
 	{ "kevinhwang91/nvim-ufo", dependencies = { "kevinhwang91/promise-async" } },
